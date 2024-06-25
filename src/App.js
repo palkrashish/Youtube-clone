@@ -3,7 +3,7 @@ import Head from "./components/Head";
 const App = () => {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Namaste Youtube! </h1>
+      <h1 className="text-3xl font-bold underline"> </h1>
       <Head />
       <Body />
      
