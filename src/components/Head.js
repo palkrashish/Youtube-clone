@@ -9,6 +9,7 @@ import { json } from "react-router-dom";
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [susggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -47,24 +48,28 @@ const Head = () => {
       <div className=" col-span-10 px-10 ">
         <div>
           <input
-            className="px-5 w-1/2 border border-gray-400 p-2 rounded-l-full "
+            className="px-5 w-1/2 border border-gray-400 p-2 rounded-l-full  "
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={(e) => setShowSuggestions(true)}
+            onBlur={(e) => setShowSuggestions(false)}
           />
           <button className=" border border-gray-500 px-7 py-2 rounded-r-full bg-gray-100 ">
             🔍
           </button>
         </div>
-        <div className=" fixed bg-white py-2 px-2 w-[27rem] shadow-lg rounded-lg border border-gray-100 ">
-          <ul>
-            {susggestions.map(s => <li key={s} className=" py-2 px-3 shadow-sm hover:bg-gray-400 ">
-              🔍{s}
-            </li>)}
-           
-            
-          </ul>
-        </div>
+        {showSuggestions && (
+          <div className=" fixed bg-white py-2 px-2 w-[27rem] shadow-lg rounded-lg border border-gray-100 ">
+            <ul>
+              {susggestions.map((s) => (
+                <li key={s} className=" py-2 px-3 shadow-sm hover:bg-gray-400  ">
+                  🔍{s}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       <div className=" col-span-1 ">
         <img className="h-10" alt="user-icon" src={profile} />
