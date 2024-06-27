@@ -60,7 +60,7 @@ const Head = () => {
           </button>
         </div>
         {showSuggestions && (
-          <div className=" fixed bg-white py-2 px-2 w-[27rem] shadow-lg rounded-lg border border-gray-100 ">
+          <div className=" absolute z-10 bg-white py-2 px-2 w-[27rem] shadow-lg rounded-lg border border-gray-100 ">
             <ul>
               {susggestions.map((s) => (
                 <li key={s} className=" py-2 px-3 shadow-sm hover:bg-gray-400  ">
