@@ -7,11 +7,13 @@ import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constant";
 import { json } from "react-router-dom";
 import { store } from "../utils/store";
+import { cacheResults } from "../utils/searchSlice";
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [susggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(true);
-  const searchCache = useSelector((store) => store.search)
+  const searchCache = useSelector((store) => store.search);
+  const dispath = useDispatch("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -33,8 +35,13 @@ const Head = () => {
     const json = await data.json();
     console.log(json[1]);
     setSuggestions(json[1]);
+    // here updating cache
+    dispath(
+      cacheResults({
+        [searchQuery]: json[1],
+      })
+    );
   };
-  const dispath = useDispatch("");
   const toggleMenuHandler = () => {
     dispath(toggleMenu());
   };
