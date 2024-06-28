@@ -2,18 +2,24 @@ import React, { useEffect, useState } from "react";
 import hamburger from "../assests/hamburger.svg";
 import youtube from "../assests/youtube.png";
 import profile from "../assests/profile.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constant";
 import { json } from "react-router-dom";
+import { store } from "../utils/store";
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [susggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(true);
+  const searchCache = useSelector((store) => store.search)
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      youtubeSearchSuggestions();
+      if (searchCache[searchQuery]) {
+        setSuggestions(json[1]);
+      } else {
+        youtubeSearchSuggestions();
+      }
     }, 200);
     return () => {
       clearTimeout(timer);
@@ -63,7 +69,10 @@ const Head = () => {
           <div className=" absolute z-10 bg-white py-2 px-2 w-[27rem] shadow-lg rounded-lg border border-gray-100 ">
             <ul>
               {susggestions.map((s) => (
-                <li key={s} className=" py-2 px-3 shadow-sm hover:bg-gray-400  ">
+                <li
+                  key={s}
+                  className=" py-2 px-3 shadow-sm hover:bg-gray-400  "
+                >
                   🔍{s}
                 </li>
               ))}
