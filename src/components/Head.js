@@ -30,10 +30,10 @@ const Head = () => {
 
   const youtubeSearchSuggestions = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
-    console.log(searchQuery);
+    // console.log(searchQuery);
 
     const json = await data.json();
-    console.log(json[1]);
+    // console.log(json[1]);
     setSuggestions(json[1]);
     // here updating cache
     dispath(
