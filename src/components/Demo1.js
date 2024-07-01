@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Demo1 = () => {
-  const [y, setY] = useState(0);
+  let [y, setY] = useState(0);
   let x = 0;
   return (
     <div className="m-4 p-2 bg-slate-400 border border-black w-96 h-96 rounded-xl ">
