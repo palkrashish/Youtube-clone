@@ -8,7 +8,7 @@ import LiveChat from "./LiveChat";
 const WatchPage = () => {
   // const params = useParams();
   const [searchParams] = useSearchParams();
-  console.log(searchParams.get("v"));
+  // console.log(searchParams.get("v"));
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(closeMenu());

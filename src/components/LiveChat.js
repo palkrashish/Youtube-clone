@@ -1,16 +1,19 @@
 import React, { useEffect } from "react";
 import ChatMessage from "./ChatMessage";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addMessage } from "../utils/chatSlice";
+import { generateRandomName } from "../utils/helper";
 
 const LiveChat = () => {
   const dispatch = useDispatch();
+
+  const chatMessage = useSelector((store) => store.chat.messages);
   useEffect(() => {
     const i = setInterval(() => {
       // API Polling
       dispatch(
         addMessage({
-          name: "Ashish Kumar Pal",
+          name: generateRandomName(),
           message: " lorem text  ",
         })
       );
@@ -19,12 +22,14 @@ const LiveChat = () => {
   }, []);
 
   return (
-    <div className=" w-full h-[600px] ml-1 p-1 border border-black bg-slate-100 rounded-2xl ">
-      <ChatMessage
-        name="Ashish Pal"
-        message="Nice a way explaning the redux and useState"
-      />
-    </div>
+    <>
+      <div className=" w-full h-[600px] ml-1 p-1 border border-black bg-slate-100 rounded-2xl overflow-y-scroll ">
+        {chatMessage.map((c, index) =>(
+            <ChatMessage key={index} name={c.name} message={c.message} />
+        )
+        )}
+      </div>
+    </>
   );
 };
 
