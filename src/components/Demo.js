@@ -11,7 +11,7 @@ const Demo = () => {
     <div>
       <div
         className={
-          "m-4 p-2 w-96 h-96 border border-black" +
+          "m-4 p-2 w-96 h-96 border border-black rounded-xl " +
           (isDarkTheme && " bg-gray-400 text-white")
         }
       >
