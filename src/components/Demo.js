@@ -3,7 +3,7 @@ import { findPrime } from "../utils/helper";
 
 const Demo = () => {
   const [text, setText] = useState(0);
-  console.log("Rendering");
+  // console.log("Rendering");
   const [isDarkTheme, setIsDarkTheme] = useState("false");
 
   const prime = useMemo(() => findPrime(text), [text]);
